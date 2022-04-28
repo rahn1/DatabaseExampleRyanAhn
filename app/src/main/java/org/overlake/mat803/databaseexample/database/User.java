@@ -7,4 +7,10 @@ public class User {
     public int sisId;
     public String firstName;
     public String lastName;
+
+    public User(int sisId, String firstName, String lastName) {
+        this.sisId = sisId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

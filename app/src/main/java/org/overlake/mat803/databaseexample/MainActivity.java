@@ -12,11 +12,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
 
+import org.overlake.mat803.databaseexample.database.SisDatabase;
+import org.overlake.mat803.databaseexample.database.SisDatabaseDao;
+import org.overlake.mat803.databaseexample.database.Student;
 import org.overlake.mat803.databaseexample.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,11 +41,19 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        SisDatabase database = Room.databaseBuilder(this,SisDatabase.class,"SISDatabase").allowMainThreadQueries().build();
+        SisDatabaseDao dao = database.getDao();
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Student student = new Student(123, "Biffster", "Johansen");
+                Student student1 = new Student(456, "Sue", "Jones");
+                dao.updateStudent(student);
+                dao.addStudent(student1);
+                dao.deleteStudent(student);
+                int count = dao.studentCount();
+                String msg = getString(R.string.student_count,count);
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
