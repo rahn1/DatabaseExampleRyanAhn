@@ -23,8 +23,7 @@ public class StudentAddDialogFragment extends DialogFragment {
 
       FragmentAddStudentBinding binding = FragmentAddStudentBinding.inflate(getLayoutInflater());
       AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-      SisDatabase database = Room.databaseBuilder(getContext(),SisDatabase.class,"SISDatabase").allowMainThreadQueries().build();
-      SisDatabaseDao dao = database.getDao();
+
       builder
               .setView(binding.getRoot())
               .setPositiveButton("Create", new DialogInterface.OnClickListener() {
@@ -36,7 +35,7 @@ public class StudentAddDialogFragment extends DialogFragment {
                        binding.secondName.getText().toString()
                      );
 
-                     dao.addStudent(student);
+
                      Toast.makeText(getActivity(), "Student successfully added", Toast.LENGTH_SHORT).show();
                  }
               })

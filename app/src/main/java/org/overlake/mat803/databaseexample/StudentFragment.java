@@ -10,7 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.room.Room;
 
+import org.overlake.mat803.databaseexample.database.SisDatabase;
+import org.overlake.mat803.databaseexample.database.SisDatabaseDao;
 import org.overlake.mat803.databaseexample.databinding.FragmentStudentBinding;
 
 public class StudentFragment extends Fragment {
@@ -24,20 +27,21 @@ public class StudentFragment extends Fragment {
     ) {
 
         binding = FragmentStudentBinding.inflate(inflater, container, false);
-//        for (int i = 0; i < 100; i++) {
-//            TextView text = new TextView(getContext());
-//            text.setText("Student " + i);
-//            text.setHeight(500);
-//            text.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(getContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//            binding.scroller.addView(text);
-//        }
 
-        binding.recycler.setAdapter(null);
+        SisDatabase database = Room.databaseBuilder(getContext(),SisDatabase.class,"SISDatabase").allowMainThreadQueries().build();
+        SisDatabaseDao dao = database.getDao();
+
+        binding.recycler.setAdapter(new StudentAdapter(dao));
+
+        StudentAddDialogFragment addStudentFragment = new StudentAddDialogFragment();
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addStudentFragment.show(getParentFragmentManager(), null);
+            }
+        });
+
         return binding.getRoot();
 
     }
