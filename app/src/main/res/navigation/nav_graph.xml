@@ -14,6 +14,12 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_addStudentFragment"
+            app:destination="@id/addStudentFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/FirstFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -24,5 +30,20 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_addStudentFragment"
+            app:destination="@id/addStudentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="org.overlake.mat803.databaseexample.StudentAddDialogFragment"
+        android:label="Add Fragment" >
+
+    <action
+        android:id="@+id/action_global_addStudentFragment"
+        app:destination="@id/addStudentFragment"
+        app:popUpTo="@id/FirstFragment"
+        app:popUpToInclusive="false" />
     </fragment>
 </navigation>

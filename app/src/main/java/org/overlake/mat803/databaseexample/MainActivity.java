@@ -21,6 +21,7 @@ import org.overlake.mat803.databaseexample.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +41,21 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        /*
+        SisDatabase database = Room.databaseBuilder(this, SisDatabase.class, "SISDatabase").allowMainThreadQueries().build();
+        SisDatabaseDao dao = database.getDao();
 
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "lmao", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.addStudentFragment);
+                int count = dao.studentCount();
+                String msg = "There are " + count + " students";
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+*/
     }
 
     @Override

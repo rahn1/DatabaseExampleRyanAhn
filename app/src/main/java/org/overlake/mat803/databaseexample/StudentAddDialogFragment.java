@@ -27,19 +27,24 @@ public class StudentAddDialogFragment extends DialogFragment {
       builder
               .setView(binding.getRoot())
               .setPositiveButton("Create", new DialogInterface.OnClickListener() {
+
                  @Override
                  public void onClick(DialogInterface dialogInterface, int i) {
                      Student student = new Student(
-                       Integer.valueOf(binding.studentId.getText().toString()),
-                       binding.firstName.getText().toString(),
-                       binding.secondName.getText().toString()
+                             Integer.valueOf(binding.studentId.getText().toString()),
+                             binding.firstName.getText().toString(),
+                             binding.secondName.getText().toString()
                      );
 
 
                      Toast.makeText(getActivity(), "Student successfully added", Toast.LENGTH_SHORT).show();
                  }
+
               })
               .setNegativeButton("Cancel", null);
+
       return builder.create();
+
+
    }
 }

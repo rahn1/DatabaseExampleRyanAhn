@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.room.Room;
 
+import org.overlake.mat803.databaseexample.database.SisDatabase;
+import org.overlake.mat803.databaseexample.database.SisDatabaseDao;
 import org.overlake.mat803.databaseexample.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
@@ -22,6 +25,8 @@ public class SecondFragment extends Fragment {
     ) {
 
         binding = FragmentSecondBinding.inflate(inflater, container, false);
+        SisDatabase database = Room.databaseBuilder(getContext(), SisDatabase.class, "SISDatabase").allowMainThreadQueries().build();
+        //SisDatabaseDao dao = database.getDao();
         return binding.getRoot();
 
     }
