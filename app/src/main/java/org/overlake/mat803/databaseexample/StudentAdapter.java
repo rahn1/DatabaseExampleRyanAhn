@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.overlake.mat803.databaseexample.database.SisDatabaseDao;
@@ -19,11 +18,9 @@ import java.util.List;
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
 
     List<Student> mStudents;
-
     public StudentAdapter(SisDatabaseDao dao) {
         mStudents = dao.getStudents();
     }
-
 
     @NonNull
     @Override

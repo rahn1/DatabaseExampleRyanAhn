@@ -25,8 +25,8 @@ public class SecondFragment extends Fragment {
     ) {
 
         binding = FragmentSecondBinding.inflate(inflater, container, false);
-        SisDatabase database = Room.databaseBuilder(getContext(), SisDatabase.class, "SISDatabase").allowMainThreadQueries().build();
-        //SisDatabaseDao dao = database.getDao();
+        SisDatabase database = Room.databaseBuilder(getContext(),SisDatabase.class,"SISDatabase").allowMainThreadQueries().build();
+        SisDatabaseDao dao = database.getDao();
         return binding.getRoot();
 
     }
@@ -34,7 +34,7 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+        binding.buttonPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(SecondFragment.this)
